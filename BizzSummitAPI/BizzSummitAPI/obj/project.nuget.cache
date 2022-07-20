@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "A6j7u8bcpfBsyKLjEZ9dABvlNYAuFd9ANgC+mGsKpzpwS8J2LJf+GjEPWM1lsCqK4lQU/vC4Ps6/l75HUoIqGg==",
+  "dgSpecHash": "5RCXaAvamOoSWXq0EOvOMXTqHE8M8XI4Bz86+p6RuXYOB+qTagL2isluceaKijRVaNp5/C1031pGV//CPl3ZVQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\jsegura1\\Source\\Repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj",
   "expectedPackageFiles": [
@@ -33,7 +33,8 @@
     "C:\\Users\\jsegura1\\.nuget\\packages\\system.text.json\\4.6.0\\system.text.json.4.6.0.nupkg.sha512",
     "C:\\Users\\jsegura1\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\jsegura1\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
-    "C:\\Users\\jsegura1\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\jsegura1\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\jsegura1\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
   ],
   "logs": []
 }
