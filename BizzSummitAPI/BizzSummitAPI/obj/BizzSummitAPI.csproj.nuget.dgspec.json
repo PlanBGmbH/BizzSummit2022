@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jsegura1\\Source\\Repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj": {}
+    "C:\\Users\\jsegura1\\source\\repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jsegura1\\Source\\Repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj": {
+    "C:\\Users\\jsegura1\\source\\repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jsegura1\\Source\\Repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj",
+        "projectUniqueName": "C:\\Users\\jsegura1\\source\\repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj",
         "projectName": "BizzSummitAPI",
-        "projectPath": "C:\\Users\\jsegura1\\Source\\Repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj",
+        "projectPath": "C:\\Users\\jsegura1\\source\\repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\BizzSummitAPI.csproj",
         "packagesPath": "C:\\Users\\jsegura1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jsegura1\\Source\\Repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\obj\\",
+        "outputPath": "C:\\Users\\jsegura1\\source\\repos\\BizzSummit2022\\BizzSummitAPI\\BizzSummitAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jsegura1\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Azure.Extensions.AspNetCore.Configuration.Secrets": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
             "Microsoft.Azure.Cosmos": {
               "target": "Package",
               "version": "[3.29.0, )"
@@ -50,7 +58,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[5.6.3, )"
             }
           },
           "imports": [

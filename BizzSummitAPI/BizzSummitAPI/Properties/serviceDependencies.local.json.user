@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2022-07-21T06:47:20.9014672Z"
+    },
+    "cosmosdb1": {
+      "restored": true,
+      "restoreTime": "2022-07-21T06:47:22.1946646Z"
+    }
+  },
+  "parameters": {
+    "cosmosdb1.resourceGroupName": {
+      "Name": "cosmosdb1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "BizzSummit2022"
+    },
+    "cosmosdb1.subscriptionId": {
+      "Name": "cosmosdb1.subscriptionId",
+      "Type": "subscription",
+      "Value": "928531ef-6718-48b5-95ab-2a505985bfd6"
+    }
+  }
+}
