@@ -24,9 +24,16 @@ namespace BizzSummitAPI
         {
             services.AddControllers();
             services.AddSwaggerGen();
-            services.AddSingleton<IBookingsService>(InitializeCosmosBookingsClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
-            services.AddSingleton<IProjectsService>(InitializeCosmosProjectsClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
-            services.AddSingleton<IResourcesService>(InitializeCosmosResourcesClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
+            var CosmosDBEndpoint = Configuration["CosmosDB:Endpoint"];
+            var CosmosDBKey = Configuration["CosmosDB:Key"];
+            var CosmosDBDatabaseName = Configuration["CosmosDB:DatabaseName"];
+            var CosmosDBBookingsContainer = Configuration["CosmosDB:BookingsContainer"];
+            var CosmosDBProjectsContainer = Configuration["CosmosDB:ProjectsContainer"];
+            var CosmosDBResourcesContainer = Configuration["CosmosDB:ResourcesContainer"];
+            
+            services.AddSingleton<IBookingsService>(InitializeCosmosBookingsClientInstanceAsync(CosmosDBEndpoint, CosmosDBKey, CosmosDBDatabaseName, CosmosDBBookingsContainer).GetAwaiter().GetResult());
+            services.AddSingleton<IProjectsService>(InitializeCosmosProjectsClientInstanceAsync(CosmosDBEndpoint, CosmosDBKey, CosmosDBDatabaseName, CosmosDBProjectsContainer).GetAwaiter().GetResult());
+            services.AddSingleton<IResourcesService>(InitializeCosmosResourcesClientInstanceAsync(CosmosDBEndpoint, CosmosDBKey, CosmosDBDatabaseName, CosmosDBResourcesContainer).GetAwaiter().GetResult());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,16 +66,12 @@ namespace BizzSummitAPI
         /// Creates, if not existing, the CosmosDB Database and Bookings Container
         /// </summary>
         /// <returns></returns>
-        private static async Task<BookingsService> InitializeCosmosBookingsClientInstanceAsync(IConfigurationSection configurationSection)
-        {
-            string databaseName = configurationSection.GetSection("DatabaseName").Value;
-            string bookingsContainer = configurationSection.GetSection("BookingsContainer").Value;            
-            string account = configurationSection.GetSection("Account").Value;
-            string key = configurationSection.GetSection("Key").Value;
-            CosmosClient client = new CosmosClient(account, key);
-            BookingsService bookingsService = new BookingsService(client, databaseName, bookingsContainer);
-            DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);            
-            await database.Database.CreateContainerIfNotExistsAsync(bookingsContainer, "/id");            
+        private static async Task<BookingsService> InitializeCosmosBookingsClientInstanceAsync(string CosmosDBEndpoint, string CosmosDBKey, string CosmosDBDatabaseName, string CosmosDBBookingsContainer)
+        {                               
+            CosmosClient client = new CosmosClient(CosmosDBEndpoint, CosmosDBKey);
+            BookingsService bookingsService = new BookingsService(client, CosmosDBDatabaseName, CosmosDBBookingsContainer);
+            DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(CosmosDBDatabaseName);            
+            await database.Database.CreateContainerIfNotExistsAsync(CosmosDBBookingsContainer, "/id");            
             return bookingsService;
         }
 
@@ -76,16 +79,12 @@ namespace BizzSummitAPI
         /// Creates, if not existing, the CosmosDB Database and Projects Container
         /// </summary>
         /// <returns></returns>
-        private static async Task<ProjectsService> InitializeCosmosProjectsClientInstanceAsync(IConfigurationSection configurationSection)
-        {
-            string databaseName = configurationSection.GetSection("DatabaseName").Value;            
-            string projectsContainer = configurationSection.GetSection("ProjectsContainer").Value;            
-            string account = configurationSection.GetSection("Account").Value;
-            string key = configurationSection.GetSection("Key").Value;
-            CosmosClient client = new CosmosClient(account, key);            
-            ProjectsService projectsService = new ProjectsService(client, databaseName, projectsContainer);            
-            DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);            
-            await database.Database.CreateContainerIfNotExistsAsync(projectsContainer, "/id");            
+        private static async Task<ProjectsService> InitializeCosmosProjectsClientInstanceAsync(string CosmosDBEndpoint, string CosmosDBKey, string CosmosDBDatabaseName, string CosmosDBProjectsContainer)
+        {           
+            CosmosClient client = new CosmosClient(CosmosDBEndpoint, CosmosDBKey);            
+            ProjectsService projectsService = new ProjectsService(client, CosmosDBDatabaseName, CosmosDBProjectsContainer);            
+            DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(CosmosDBDatabaseName);            
+            await database.Database.CreateContainerIfNotExistsAsync(CosmosDBProjectsContainer, "/id");            
             return projectsService;
         }
 
@@ -93,16 +92,12 @@ namespace BizzSummitAPI
         /// Creates, if not existing, the CosmosDB Database and Resources Container
         /// </summary>
         /// <returns></returns>
-        private static async Task<ResourcesService> InitializeCosmosResourcesClientInstanceAsync(IConfigurationSection configurationSection)
-        {
-            string databaseName = configurationSection.GetSection("DatabaseName").Value;
-            string resourcesContainer = configurationSection.GetSection("ResourcesContainer").Value;
-            string account = configurationSection.GetSection("Account").Value;
-            string key = configurationSection.GetSection("Key").Value;
-            CosmosClient client = new CosmosClient(account, key);
-            ResourcesService resourcesService = new ResourcesService(client, databaseName, resourcesContainer);
-            DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
-            await database.Database.CreateContainerIfNotExistsAsync(resourcesContainer, "/id");
+        private static async Task<ResourcesService> InitializeCosmosResourcesClientInstanceAsync(string CosmosDBEndpoint, string CosmosDBKey, string CosmosDBDatabaseName, string CosmosDBResourcesContainer)
+        {           
+            CosmosClient client = new CosmosClient(CosmosDBEndpoint, CosmosDBKey);
+            ResourcesService resourcesService = new ResourcesService(client, CosmosDBDatabaseName, CosmosDBResourcesContainer);
+            DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(CosmosDBDatabaseName);
+            await database.Database.CreateContainerIfNotExistsAsync(CosmosDBResourcesContainer, "/id");
             return resourcesService;
         }
     }
