@@ -1,17 +1,5 @@
-# BizzSummit2022 - Introducción
+# BizzSummit2022 - Backend
 Fusion Teams Workshop for BizzSummit 2022
-
-Pre-requisitos:
-
-  1. Suscripción a Azure: [Cuenta gratuïta de Azure](https://azure.microsoft.com/es-es/free/)
-  2. Acceso a un entorno de Power Platform: [Plan de desarrollo de Power Apps](https://docs.microsoft.com/es-es/power-apps/maker/developer-plan)
-  3. Acceso a Visual Studio o Visual Studio Code
-
-En este taller proponemos el siguiente caso de uso:
-
-![image](https://user-images.githubusercontent.com/18615795/181196622-dfe5f539-5cfe-4b48-9eda-0adb1384891c.png)
-
-Queremos permitir que los "Citizen Developers" puedan crear un conector personalizado que les permita utilizar una Web API que expone algunos servicios internos de la compañía. En este caso, queremos crear un conector personalizado que accede a una API que permite gestionar el seguimiento y gestión del tiempo en los proyectos por parte del personal de la compañía.
 
 Los componentes que se van a usar en el Back-End son los siguientes: 
 
@@ -19,11 +7,24 @@ Los componentes que se van a usar en el Back-End son los siguientes:
    2. [App Service](https://azure.microsoft.com/en-us/services/app-service/): Enables to build, deploy, and scale web apps and APIs on your terms. In our case, we will build, host and deploy a .NET Core Web API.
    3. [Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/): Fully managed, serverless NoSQL database for high-performance applications of any size or scale, with fast writes and reads anywhere in the world with multi-region writes and data replication.
 
-Los componentes que vamos a usar en el Front-End son los siguientes:
+Empezamos con la creación de la solución que conformará el Backend. Para ello abrimos Visual Studio y creamos un nuevo proyecto, de tipo ASP.NET Core Web Application:
 
-1. [Conector Personalizado](https://docs.microsoft.com/es-es/connectors/custom-connectors/): Permite utilizar la API desde cualquier aplicación (Power App) o flujo (Power Automate) en el entorno donde esté instalado.
-2. [Power App](https://powerapps.microsoft.com/es-es/): Aplicación para poder gestionar el seguimiento de actividades y tiempo dedicado a los proyectos por parte de los empleados y empleadas de la compañía.
-3. [Power Automate](): Flujos que se utilizan para implementar las distintas reglas de negocio.
+![image](https://user-images.githubusercontent.com/18615795/182643880-1dfaab8b-9952-4548-a0ca-505c90af3430.png)
 
+A continuación le damos un nombre y una ruta donde guardar la solución:
 
+![image](https://user-images.githubusercontent.com/18615795/182644475-a8434bce-a96d-4fec-b93e-c49c69f5e2d7.png)
 
+Por último, seleccionamos el template del proyecto (API) y la versión de .NET Core a utilizar (3.1):
+
+![image](https://user-images.githubusercontent.com/18615795/182644731-da7b5d79-02bb-4d92-8579-d19d7bff2484.png)
+
+Una vez creada la solución, instalamos los Nuget Packages necesarios: 
+
+![image](https://user-images.githubusercontent.com/18615795/182648595-3d8f15bc-b600-47fa-bfe9-5cf3dea2cf23.png)
+
+Configuraremos los servicios que dependen del proyecto.
+
+![image](https://user-images.githubusercontent.com/18615795/182646899-76ca6af4-fd2e-470e-8116-6b970a5f6c04.png)
+
+Para ello, editamos el método Configure Services de la clase Startup, añadiendo 
