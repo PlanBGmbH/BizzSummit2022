@@ -1,0 +1,28 @@
+# BizzSummit2022 - Introducción
+Fusion Teams Workshop for BizzSummit 2022
+
+Pre-requisitos:
+
+  1. Suscripción a Azure: [Cuenta gratuïta de Azure](https://azure.microsoft.com/es-es/free/)
+  2. Acceso a un entorno de Power Platform: [Plan de desarrollo de Power Apps](https://docs.microsoft.com/es-es/power-apps/maker/developer-plan)
+
+En este taller proponemos el siguiente caso de uso:
+
+![image](https://user-images.githubusercontent.com/18615795/181196622-dfe5f539-5cfe-4b48-9eda-0adb1384891c.png)
+
+Queremos permitir que los "Citizen Developers" puedan crear un conector personalizado que les permita utilizar una Web API que expone algunos servicios internos de la compañía. En este caso, queremos crear un conector personalizado que accede a una API que permite gestionar el seguimiento y gestión del tiempo en los proyectos por parte del personal de la compañía.
+
+Los componentes que se van a usar en el Back-End son los siguientes: 
+
+   1. [APIM](https://azure.microsoft.com/en-us/services/api-management/): Azure API Management: Enables API gateways deployments side-by-side with the APIs hosted in Azure, other clouds, and on-premises, optimizing API traffic flow. Meet security and compliance requirements while enjoying a unified management experience and full observability across all internal and external APIs.
+   2. [App Service](https://azure.microsoft.com/en-us/services/app-service/): Enables to build, deploy, and scale web apps and APIs on your terms. In our case, we will build, host and deploy a .NET Core Web API.
+   3. [Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/): Fully managed, serverless NoSQL database for high-performance applications of any size or scale, with fast writes and reads anywhere in the world with multi-region writes and data replication.
+
+Los componentes que vamos a usar en el Front-End son los siguientes:
+
+1. [Conector Personalizado](https://docs.microsoft.com/es-es/connectors/custom-connectors/): Permite utilizar la API desde cualquier aplicación (Power App) o flujo (Power Automate) en el entorno donde esté instalado.
+2. [Power App](https://powerapps.microsoft.com/es-es/): Aplicación para poder gestionar el seguimiento de actividades y tiempo dedicado a los proyectos por parte de los empleados y empleadas de la compañía.
+3. [Power Automate](): Flujos que se utilizan para implementar las distintas reglas de negocio.
+
+
+
