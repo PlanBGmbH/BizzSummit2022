@@ -5,6 +5,8 @@ Pre-requisitos:
 
   1. Suscripción a Azure: [Cuenta gratuïta de Azure](https://azure.microsoft.com/es-es/free/)
   2. Acceso a un entorno de Power Platform: [Plan de desarrollo de Power Apps](https://docs.microsoft.com/es-es/power-apps/maker/developer-plan)
+  3. Acceso a Visual Studio o Visual Studio Code
+
 
 En este taller proponemos el siguiente caso de uso:
 
