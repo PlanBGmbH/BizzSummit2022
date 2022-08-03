@@ -27,4 +27,35 @@ Configuraremos los servicios que dependen del proyecto.
 
 ![image](https://user-images.githubusercontent.com/18615795/182646899-76ca6af4-fd2e-470e-8116-6b970a5f6c04.png)
 
-Para ello, editamos el método Configure Services de la clase Startup, añadiendo 
+Para ello, editamos el método Configure Services de la clase Startup, añadiendo como servicios la inicialización única de la cosmos db y las colecciones:
+
+```cs
+public void ConfigureServices(IServiceCollection services)
+{
+   services.AddControllers();
+   services.AddSwaggerGen();
+   var CosmosDBEndpoint = Configuration["CosmosDB:Endpoint"];
+   var CosmosDBKey = Configuration["CosmosDB:Key"];
+   var CosmosDBDatabaseName = Configuration["CosmosDB:DatabaseName"];
+   var CosmosDBBookingsContainer = Configuration["CosmosDB:BookingsContainer"];
+   var CosmosDBProjectsContainer = Configuration["CosmosDB:ProjectsContainer"];
+   var CosmosDBResourcesContainer = Configuration["CosmosDB:ResourcesContainer"];
+
+   services.AddSingleton<IBookingsService>(InitializeCosmosBookingsClientInstanceAsync(CosmosDBEndpoint, CosmosDBKey, CosmosDBDatabaseName, CosmosDBBookingsContainer).GetAwaiter().GetResult());
+   services.AddSingleton<IProjectsService>(InitializeCosmosProjectsClientInstanceAsync(CosmosDBEndpoint, CosmosDBKey, CosmosDBDatabaseName, CosmosDBProjectsContainer).GetAwaiter().GetResult());
+   services.AddSingleton<IResourcesService>(InitializeCosmosResourcesClientInstanceAsync(CosmosDBEndpoint, CosmosDBKey, CosmosDBDatabaseName, CosmosDBResourcesContainer).GetAwaiter().GetResult());
+}
+ ```
+ 
+ En cada uno de los métdos InitializeCosmosXXX, nos aseguramos que la Cosmos DB y el container existe, y si no lo creamos automáticamente:
+ 
+ ```cs
+        private static async Task<BookingsService> InitializeCosmosBookingsClientInstanceAsync(string CosmosDBEndpoint, string CosmosDBKey, string CosmosDBDatabaseName, string CosmosDBBookingsContainer)
+        {                               
+            CosmosClient client = new CosmosClient(CosmosDBEndpoint, CosmosDBKey);
+            BookingsService bookingsService = new BookingsService(client, CosmosDBDatabaseName, CosmosDBBookingsContainer);
+            DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(CosmosDBDatabaseName);            
+            await database.Database.CreateContainerIfNotExistsAsync(CosmosDBBookingsContainer, "/id");            
+            return bookingsService;
+        }
+ ```
