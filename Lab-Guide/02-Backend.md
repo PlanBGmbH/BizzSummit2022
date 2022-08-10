@@ -141,7 +141,57 @@ El siguiente paso es crear los servícios que implementan las interfícies. Crea
        
        //... Implementar el resto de métodos definidos en la Interfície
   ```
-Una vez tenemos los servicios, 
+Una vez tenemos los servicios, vamos a implementar los controladores (Controllers), usando la carpeta ya existente del mismo nombre. Creamos un fichero para cada controller. Por ejemplo, creamos el ReservasControlador.cs (BookingsController.cs):
+
+  ```cs
+    [ApiController]
+    [Route("api/[controller]")]
+    public class BookingsController : ControllerBase
+    {
+        private readonly ILogger<BookingsController> _logger;
+
+        private readonly IBookingsService _bookingsService;
+
+        public BookingsController(IBookingsService bookingsService, ILogger<BookingsController> logger)
+        {
+            _bookingsService = bookingsService;
+            _logger = logger;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
+        {
+            try
+            {
+                var family = await _bookingsService.GetBookingsAsync("SELECT * FROM c");
+                return Ok(family);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, "Some error occured while retreiving data");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddBooking(Booking booking)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _bookingsService.AddBookingAsync(booking);
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, "Some error occured while inserting data");
+            }
+        }
+        //... Implementar el resto de acciones para completar el CRUD
+  ```
 
 Configuraremos los servicios que dependen del proyecto.
 
@@ -179,3 +229,19 @@ public void ConfigureServices(IServiceCollection services)
             return bookingsService;
         }
  ```
+ 
+ Necesitamos definir los secretos de usuario, que contienen todos los valores necesarios para acceder a la Cosmos DB. Para ello editoamos los secretos de usuario:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184005037-08a80bff-1f0f-4207-8732-1fa22867b33c.png)
+ 
+   ```cs
+   {
+    "CosmosDB:Endpoint": "Endpoint de la Cosmos DB. Ej: https://XXXXcosmosdb.documents.azure.com:443/",
+    "CosmosDB:Key": "Key de la Cosmos DB.",
+    "CosmosDB:DatabaseName": "Nombre de la base de datos en la Comsos DB. Ej: BizzSummit",
+    "CosmosDB:BookingsContainer": "Bookings",
+    "CosmosDB:ProjectsContainer": "Projects",
+    "CosmosDB:ResourcesContainer": "Resources"
+   }
+   ```
+
