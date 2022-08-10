@@ -230,7 +230,7 @@ public void ConfigureServices(IServiceCollection services)
         }
  ```
  
- Necesitamos definir los secretos de usuario, que contienen todos los valores necesarios para acceder a la Cosmos DB. Para ello editoamos los secretos de usuario:
+ En nuestra subscripción de Azure, creamos una Cosmos DB, preferiblemente dentro de un grupo de recursos propio al proyecto. Necesitamos definir los secretos de usuario, que contienen todos los valores necesarios para acceder a la Cosmos DB. Para ello editoamos los secretos de usuario:
  
  ![image](https://user-images.githubusercontent.com/18615795/184005037-08a80bff-1f0f-4207-8732-1fa22867b33c.png)
  
@@ -244,4 +244,34 @@ public void ConfigureServices(IServiceCollection services)
     "CosmosDB:ResourcesContainer": "Resources"
    }
    ```
+
+ El endpoint lo podeis encontrar directamente en la overview del componente Cosmos DB:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184008365-3698b34e-0f8e-4f88-897b-9eb4846fc420.png)
+
+ También se encuentra dentro de Keys, donde teneis que usar la Primary Key como Key en la solución:
+
+ ![image](https://user-images.githubusercontent.com/18615795/184008601-bead7144-6fe2-4c8e-98d2-e5f50aec04bc.png)
+
+ Creais una base de datos para el proyecto dentro de la Cosmos DB y configurais, en la solución, la key DatabaseName.
+
+ Para comprobar que Swagger esté bien configurado, en la clase Startup.cs:
+ - El método ConfigureServices tiene que tener la linea services.AddSwaggerGen();
+ - El método Configure tiene que tener la app configurada para usar Swagger:
+ ```cs
+ app.UseSwagger(c =>
+ {
+   c.SerializeAsV2 = true;
+ });
+ app.UseSwaggerUI(c =>
+ {
+   c.SwaggerEndpoint("/swagger/v1/swagger.json", "BizzSummitAPI V1");
+   c.RoutePrefix = string.Empty;
+ });
+ ```
+
+ Probamos que la aplicación funcione. La lanzamos en local (IIS Express) y comprobamos que Swagger esté bien configurado:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184009203-73ef3885-71e3-4df3-941f-257e42aee9ab.png)
+
 
