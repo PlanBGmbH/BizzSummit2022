@@ -3,9 +3,9 @@ Fusion Teams Workshop for BizzSummit 2022
 
 Los componentes que se van a usar en el Back-End son los siguientes: 
 
-   1. [APIM](https://azure.microsoft.com/en-us/services/api-management/): Azure API Management: Enables API gateways deployments side-by-side with the APIs hosted in Azure, other clouds, and on-premises, optimizing API traffic flow. Meet security and compliance requirements while enjoying a unified management experience and full observability across all internal and external APIs.
-   2. [App Service](https://azure.microsoft.com/en-us/services/app-service/): Enables to build, deploy, and scale web apps and APIs on your terms. In our case, we will build, host and deploy a .NET Core Web API.
-   3. [Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/): Fully managed, serverless NoSQL database for high-performance applications of any size or scale, with fast writes and reads anywhere in the world with multi-region writes and data replication.
+   1. [APIM](https://azure.microsoft.com/es-ES/services/api-management/): Azure API Management: Implementa puertas de enlace de API en paralelo con las API hospedadas en Azure, en otras nubes y en el entorno local para optimizar el flujo de tráfico de las API, satisfaciendo los requisitos de seguridad y cumplimiento normativo, proveyendo una experiencia de administración unificada y una observación completa de todas las API internas y externas.
+   2. [App Service](https://azure.microsoft.com/es-ES/services/app-service/): Permite compilar, implementar y escalar aplicaciones web y API de forma automática. En nuestro caso implementaremos, i alojaremos una aplicación .NET Core Web API.
+   3. [Cosmos DB](https://azure.microsoft.com/es-ES/services/cosmos-db/): Es una base de datos NoSQL sin servidor totalmente administrada para aplicaciones de alto rendimiento de cualquier tamaño o escala.
 
 Empezamos con la creación de la solución que conformará el Backend. Para ello abrimos Visual Studio y creamos un nuevo proyecto, de tipo ASP.NET Core Web Application:
 
@@ -141,7 +141,7 @@ El siguiente paso es crear los servícios que implementan las interfícies. Crea
        
        //... Implementar el resto de métodos definidos en la Interfície
   ```
-
+Una vez tenemos los servicios, 
 
 Configuraremos los servicios que dependen del proyecto.
 
