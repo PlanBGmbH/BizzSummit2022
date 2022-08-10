@@ -274,4 +274,42 @@ public void ConfigureServices(IServiceCollection services)
  
  ![image](https://user-images.githubusercontent.com/18615795/184009203-73ef3885-71e3-4df3-941f-257e42aee9ab.png)
 
+ El siguiente paso es publicar la aplicación en Azure. Para ello creamos, dentro de nuestra subscripción, un App Service:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184011002-d9a466a9-4f93-424b-b3d9-70edf3b391b6.png)
 
+  En nuestra solución, botón derecho -> Publicar:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184011351-ce55688f-04da-4f17-8dd2-5d4b8117afe7.png)
+
+ Configuramos un nuevo destino y seguimos el Wizard, seleccionando el componente Web App creado en Azure:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184013691-78afd1a9-60e3-4366-b08d-10c0a84f7c0d.png)
+ 
+ Publicamos la solución. Una vez completado, se abrirá la URL de la webapp en azure con la solución desplegada:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184013829-f046e732-8156-4166-b06d-349d7e877fdd.png)
+ 
+ Por último, creamos también en azure un nuevo componente, API Management
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184012127-8139c744-6400-40e9-9916-0975fc554e7d.png)
+
+ Copiamos, des de la aplicación web, el link a la especificación OpenAPI:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184014085-fda0f48f-e3b5-4788-a764-abdd395b3c1e.png)
+
+ En el componente API Management, creamos una nueva API a partir de la deinición OpenAPI:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184014278-1e477069-1bf9-4565-a770-c29be4f99a28.png)
+
+ Introducimos el link:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184014488-319a088b-117c-4c0e-bcf4-eb607c302d51.png)
+
+ Comprobamos que se ha importado correctamente:
+ 
+ ![image](https://user-images.githubusercontent.com/18615795/184014661-24a61d78-efdb-4132-b2c9-2a6a4d325f7a.png)
+
+ Con esto, tenemos el backend listo y podemos pasar al siguiente bloque, que es la creación del Custom Conector y su uso en Power Platform.
+ 
+ No hace falta decir que estamos obviando, por motivos de tiempo y facilidad de uso dentro del Workshop, pasos absolutamente necesarios para poder poner la aplicación en un entorno de producción: Autenticación / Autorización, Logging, etc. Estamos encantados, si estais interesados, en que nos contacteis en cualquier momento para profundizar mas en cualquier duda que tengais acerca de ello.
