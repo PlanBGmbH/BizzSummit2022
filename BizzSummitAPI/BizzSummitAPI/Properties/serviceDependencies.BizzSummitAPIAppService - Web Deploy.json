@@ -5,12 +5,6 @@
       "type": "cosmosdb.azure",
       "connectionId": "CosmosDBKeys",
       "secretStore": "AzureAppSettings"
-    },
-    "secrets1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/BizzSummitKeyValult",
-      "type": "secrets.keyVault",
-      "connectionId": "VaultUri",
-      "secretStore": "AzureAppSettings"
     }
   }
 }

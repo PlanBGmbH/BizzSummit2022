@@ -1,9 +1,5 @@
 {
   "dependencies": {
-    "secrets1": {
-      "restored": true,
-      "restoreTime": "2022-07-21T06:47:20.9014672Z"
-    },
     "cosmosdb1": {
       "restored": true,
       "restoreTime": "2022-07-21T06:47:22.1946646Z"
