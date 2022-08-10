@@ -92,6 +92,57 @@ Empezamos creando los tres modelos de datos que seran persistidos en la base de 
         public string Phone { get; set; }
     }
   ```
+
+A continuación, creamos las tres interfícies de lo que seran nuestros servicios, que para un primer ejemplo pueden contener simplemente las operaciones CRUD (Create, Read, Update y Delete) de cada una de las entidades. Creamos una carpeta con nombre Interficies (Interfaces), y las añadimos. Por ejemplo, para Reservas (Bookings), creamos la IReservasSevicio.cs (IBookingsService.cs):
+
+  ```cs
+    public interface IBookingsService
+    {
+        Task<IEnumerable<Booking>> GetBookingsAsync(string query);
+
+        Task AddBookingAsync(Booking booking);
+
+        Task DeleteBookingAsync(string id);
+
+        Task UpdateBookingAsync(Booking booking);
+    }
+  ```
+El siguiente paso es crear los servícios que implementan las interfícies. Creamos la carpeta Servicios (Services), y creamos los tres servícios. Por ejemplo, para Reservas (Bookings), creamos la clase BookingsService.cs:
+
+  ```cs
+    public class BookingsService: IBookingsService  <-- Implementa la interfície
+    {
+        private Container _container; <-- Container de Cosmos DB
+
+        private static readonly JsonSerializer Serializer = new JsonSerializer();
+
+        public BookingsService(CosmosClient dbClient, string databaseName, string containerName)
+        {
+            this._container = dbClient.GetContainer(databaseName, containerName); <- El constructor del servicio recibe el cliente de Cosmos DB y obtiene el container.
+        }
+
+        public async Task<IEnumerable<Booking>> GetBookingsAsync(string queryString) <- Obtiene un conjunto de reservas basadas en la querystring recibida.
+        {
+            var query = this._container.GetItemQueryIterator<Booking>(new QueryDefinition(queryString));
+            List<Booking> results = new List<Booking>();
+            while (query.HasMoreResults)
+            {
+                var response = await query.ReadNextAsync();
+
+                results.AddRange(response.ToList());
+            }
+            return results;
+        }
+
+        public async Task AddBookingAsync(Booking booking) <- Añade una nueva reserva
+        {
+            await this._container.CreateItemAsync<Booking>(booking, new PartitionKey(booking.Id));
+        }
+       
+       //... Implementar el resto de métodos definidos en la Interfície
+  ```
+
+
 Configuraremos los servicios que dependen del proyecto.
 
 ![image](https://user-images.githubusercontent.com/18615795/182646899-76ca6af4-fd2e-470e-8116-6b970a5f6c04.png)
