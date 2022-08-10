@@ -193,7 +193,7 @@ Una vez tenemos los servicios, vamos a implementar los controladores (Controller
         //... Implementar el resto de acciones para completar el CRUD
   ```
 
-Configuraremos los servicios que dependen del proyecto.
+Configuramos los servicios que dependen del proyecto.
 
 ![image](https://user-images.githubusercontent.com/18615795/182646899-76ca6af4-fd2e-470e-8116-6b970a5f6c04.png)
 
@@ -245,7 +245,7 @@ public void ConfigureServices(IServiceCollection services)
    }
    ```
 
- El endpoint lo podeis encontrar directamente en la overview del componente Cosmos DB:
+ El endpoint lo podemos encontrar directamente en la overview del componente Cosmos DB:
  
  ![image](https://user-images.githubusercontent.com/18615795/184008365-3698b34e-0f8e-4f88-897b-9eb4846fc420.png)
 
@@ -253,7 +253,7 @@ public void ConfigureServices(IServiceCollection services)
 
  ![image](https://user-images.githubusercontent.com/18615795/184008601-bead7144-6fe2-4c8e-98d2-e5f50aec04bc.png)
 
- Creais una base de datos para el proyecto dentro de la Cosmos DB y configurais, en la solución, la key DatabaseName.
+ Creamos una base de datos para el proyecto dentro de la Cosmos DB y configuramos, en la solución, la key DatabaseName.
 
  Para comprobar que Swagger esté bien configurado, en la clase Startup.cs:
  - El método ConfigureServices tiene que tener la linea services.AddSwaggerGen();
