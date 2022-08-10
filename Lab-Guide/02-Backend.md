@@ -23,6 +23,75 @@ Una vez creada la solución, instalamos los Nuget Packages necesarios:
 
 ![image](https://user-images.githubusercontent.com/18615795/182648595-3d8f15bc-b600-47fa-bfe9-5cf3dea2cf23.png)
 
+- Microsoft.Azure.CosmosDB: Librería que nos permite conectarnos y trabajar con Azure Cosmos DB usando la API de SQL.
+- Newtonsoft.Json: Nos permite serializar y deserializar objetos, usados para la comunicación con Cosmos DB.
+- Swashbuckle.AspNetCore (versión 5.6.3, que es compatible con proyectos ASP.NET Core 3.1: Nos permite usar Swagger para documentar nuestras APIs.
+
+Empezamos creando los tres modelos de datos que seran persistidos en la base de datos. Creamos una carpeta en la solucion de nombre Models (Modelos), donde creamos tres clases:
+
+1) Reserva (Booking)
+  ```cs
+    public class Booking
+    {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "projectId")]
+        public string ProjectId { get; set; }
+
+        [JsonProperty(PropertyName = "resourceId")]
+        public string ResourceId { get; set; }
+
+        [JsonProperty(PropertyName = "date")]
+        public DateTime Date { get; set; }
+
+        [JsonProperty(PropertyName = "hours")]
+        public double Hours { get; set; }
+    }
+  ```
+2) Proyecto (Project)
+  ```cs
+    public class Project
+    {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
+
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
+
+        [JsonProperty(PropertyName = "customer")]
+        public string Customer { get; set; }
+
+        [JsonProperty(PropertyName = "startDate")]
+        public DateTime StartDate { get; set; }
+
+        [JsonProperty(PropertyName = "createdBy")]
+        public string CreatedBy { get; set; }        
+    }
+  ```
+ 3) Recurso (Resource)
+  ```cs
+    public class Resource
+    {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "firstName")]
+        public string FirstName { get; set; }
+
+        [JsonProperty(PropertyName = "lastName")]
+        public string LastName { get; set; }
+
+        [JsonProperty(PropertyName = "email")]
+        public string Email { get; set; }
+
+        [JsonProperty(PropertyName = "phone")]
+        public string Phone { get; set; }
+    }
+  ```
 Configuraremos los servicios que dependen del proyecto.
 
 ![image](https://user-images.githubusercontent.com/18615795/182646899-76ca6af4-fd2e-470e-8116-6b970a5f6c04.png)
