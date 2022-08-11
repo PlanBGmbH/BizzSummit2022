@@ -1,5 +1,5 @@
 # BizzSummit2022 - Backend
-Fusion Teams Workshop for BizzSummit 2022
+Fusion Teams Workshop para BizzSummit 2022
 
 Los componentes que se van a usar en el Back-End son los siguientes: 
 
@@ -24,10 +24,10 @@ Una vez creada la solución, instalamos los Nuget Packages necesarios:
 ![image](https://user-images.githubusercontent.com/18615795/182648595-3d8f15bc-b600-47fa-bfe9-5cf3dea2cf23.png)
 
 - Microsoft.Azure.CosmosDB: Librería que nos permite conectarnos y trabajar con Azure Cosmos DB usando la API de SQL.
-- Newtonsoft.Json: Nos permite serializar y deserializar objetos, usados para la comunicación con Cosmos DB.
-- Swashbuckle.AspNetCore (versión 5.6.3, que es compatible con proyectos ASP.NET Core 3.1: Nos permite usar Swagger para documentar nuestras APIs.
+- Newtonsoft.Json: Nos permite serializar y deserializar objetos, utilizados para la comunicación con Cosmos DB.
+- Swashbuckle.AspNetCore (versión 5.6.3, que es compatible con proyectos ASP.NET Core 3.1: Nos permite utilizar Swagger para documentar nuestras APIs.
 
-Empezamos creando los tres modelos de datos que seran persistidos en la base de datos. Creamos una carpeta en la solucion de nombre Models (Modelos), donde creamos tres clases:
+Empezamos creando los tres modelos de datos que serán persistidos en la base de datos. Creamos una carpeta en la solución de nombre Models (Modelos), donde creamos tres clases:
 
 1) Reserva (Booking)
   ```cs
@@ -93,7 +93,7 @@ Empezamos creando los tres modelos de datos que seran persistidos en la base de 
     }
   ```
 
-A continuación, creamos las tres interfícies de lo que seran nuestros servicios, que para un primer ejemplo pueden contener simplemente las operaciones CRUD (Create, Read, Update y Delete) de cada una de las entidades. Creamos una carpeta con nombre Interficies (Interfaces), y las añadimos. Por ejemplo, para Reservas (Bookings), creamos la IReservasSevicio.cs (IBookingsService.cs):
+A continuación, creamos las tres interficies de lo que serán nuestros servicios, que para un primer ejemplo pueden contener simplemente las operaciones CRUD (Create, Read, Update y Delete) de cada una de las entidades. Creamos una carpeta con nombre Interficies (Interfaces), y las añadimos. Por ejemplo, para Reservas (Bookings), creamos la IReservasSevicio.cs (IBookingsService.cs):
 
   ```cs
     public interface IBookingsService
@@ -107,10 +107,10 @@ A continuación, creamos las tres interfícies de lo que seran nuestros servicio
         Task UpdateBookingAsync(Booking booking);
     }
   ```
-El siguiente paso es crear los servícios que implementan las interfícies. Creamos la carpeta Servicios (Services), y creamos los tres servícios. Por ejemplo, para Reservas (Bookings), creamos la clase BookingsService.cs:
+El siguiente paso es crear los servicios que implementan las interficies. Creamos la carpeta Servicios (Services), y creamos los tres servicios. Por ejemplo, para Reservas (Bookings), creamos la clase BookingsService.cs:
 
   ```cs
-    public class BookingsService: IBookingsService  <-- Implementa la interfície
+    public class BookingsService: IBookingsService  <-- Implementa la interficie
     {
         private Container _container; <-- Container de Cosmos DB
 
@@ -139,7 +139,7 @@ El siguiente paso es crear los servícios que implementan las interfícies. Crea
             await this._container.CreateItemAsync<Booking>(booking, new PartitionKey(booking.Id));
         }
        
-       //... Implementar el resto de métodos definidos en la Interfície
+       //... Implementar el resto de métodos definidos en la interficie
   ```
 Una vez tenemos los servicios, vamos a implementar los controladores (Controllers), usando la carpeta ya existente del mismo nombre. Creamos un fichero para cada controller. Por ejemplo, creamos el ReservasControlador.cs (BookingsController.cs):
 
@@ -197,7 +197,7 @@ Configuramos los servicios que dependen del proyecto.
 
 ![image](https://user-images.githubusercontent.com/18615795/182646899-76ca6af4-fd2e-470e-8116-6b970a5f6c04.png)
 
-Para ello, editamos el método Configure Services de la clase Startup, añadiendo como servicios la inicialización única de la cosmos db y las colecciones:
+Para ello, editamos el método Configure Services de la clase Startup, añadiendo como servicios la inicialización única de la Cosmos DB y las colecciones:
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -217,7 +217,7 @@ public void ConfigureServices(IServiceCollection services)
 }
  ```
  
- En cada uno de los métdos InitializeCosmosXXX, nos aseguramos que la Cosmos DB y el container existe, y si no lo creamos automáticamente:
+ En cada uno de los métodos InitializeCosmosXXX, nos aseguramos que la Cosmos DB y el container existe, y si no lo creamos automáticamente:
  
  ```cs
         private static async Task<BookingsService> InitializeCosmosBookingsClientInstanceAsync(string CosmosDBEndpoint, string CosmosDBKey, string CosmosDBDatabaseName, string CosmosDBBookingsContainer)
@@ -230,7 +230,7 @@ public void ConfigureServices(IServiceCollection services)
         }
  ```
  
- En nuestra subscripción de Azure, creamos una Cosmos DB, preferiblemente dentro de un grupo de recursos propio al proyecto. Necesitamos definir los secretos de usuario, que contienen todos los valores necesarios para acceder a la Cosmos DB. Para ello editoamos los secretos de usuario:
+ En nuestra subscripción de Azure, creamos una Cosmos DB, preferiblemente dentro de un grupo de recursos propio al proyecto. Necesitamos definir los secretos de usuario, que contienen todos los valores necesarios para acceder a la Cosmos DB. Para ello editamos los secretos de usuario:
  
  ![image](https://user-images.githubusercontent.com/18615795/184005037-08a80bff-1f0f-4207-8732-1fa22867b33c.png)
  
@@ -249,14 +249,14 @@ public void ConfigureServices(IServiceCollection services)
  
  ![image](https://user-images.githubusercontent.com/18615795/184008365-3698b34e-0f8e-4f88-897b-9eb4846fc420.png)
 
- También se encuentra dentro de Keys, donde teneis que usar la Primary Key como Key en la solución:
+ También se encuentra dentro de Keys, donde tenéis que usar la Primary Key como Key en la solución:
 
  ![image](https://user-images.githubusercontent.com/18615795/184008601-bead7144-6fe2-4c8e-98d2-e5f50aec04bc.png)
 
  Creamos una base de datos para el proyecto dentro de la Cosmos DB y configuramos, en la solución, la key DatabaseName.
 
  Para comprobar que Swagger esté bien configurado, en la clase Startup.cs:
- - El método ConfigureServices tiene que tener la linea services.AddSwaggerGen();
+ - El método ConfigureServices tiene que tener la línea services.AddSwaggerGen();
  - El método Configure tiene que tener la app configurada para usar Swagger:
  ```cs
  app.UseSwagger(c =>
@@ -286,19 +286,19 @@ public void ConfigureServices(IServiceCollection services)
  
  ![image](https://user-images.githubusercontent.com/18615795/184013691-78afd1a9-60e3-4366-b08d-10c0a84f7c0d.png)
  
- Publicamos la solución. Una vez completado, se abrirá la URL de la webapp en azure con la solución desplegada:
+ Publicamos la solución. Una vez completado, se abrirá la URL de la webapp en Azure con la solución desplegada:
  
  ![image](https://user-images.githubusercontent.com/18615795/184013829-f046e732-8156-4166-b06d-349d7e877fdd.png)
  
- Por último, creamos también en azure un nuevo componente, API Management
+ Por último, creamos también en Azure un nuevo componente, API Management
  
  ![image](https://user-images.githubusercontent.com/18615795/184012127-8139c744-6400-40e9-9916-0975fc554e7d.png)
 
- Copiamos, des de la aplicación web, el link a la especificación OpenAPI:
+ Copiamos, desde la aplicación web, el link a la especificación OpenAPI:
  
  ![image](https://user-images.githubusercontent.com/18615795/184014085-fda0f48f-e3b5-4788-a764-abdd395b3c1e.png)
 
- En el componente API Management, creamos una nueva API a partir de la deinición OpenAPI:
+ En el componente API Management, creamos una nueva API a partir de la definición OpenAPI:
  
  ![image](https://user-images.githubusercontent.com/18615795/184014278-1e477069-1bf9-4565-a770-c29be4f99a28.png)
 
@@ -312,4 +312,4 @@ public void ConfigureServices(IServiceCollection services)
 
  Con esto, tenemos el backend listo y podemos pasar al siguiente bloque, que es la creación del Custom Conector y su uso en Power Platform.
  
- No hace falta decir que estamos obviando, por motivos de tiempo y facilidad de uso dentro del Workshop, pasos absolutamente necesarios para poder poner la aplicación en un entorno de producción: Autenticación / Autorización, Logging, etc. Estamos encantados, si estais interesados, en que nos contacteis en cualquier momento para profundizar mas en cualquier duda que tengais acerca de ello.
+ No hace falta decir que estamos obviando, por motivos de tiempo y facilidad de uso dentro del Workshop, pasos absolutamente necesarios para poder poner la aplicación en un entorno de producción: Autenticación / Autorización, Logging, etc. Estamos encantados, si estáis interesados, en que nos contactéis en cualquier momento para profundizar más en cualquier duda que tengáis acerca de ello.
