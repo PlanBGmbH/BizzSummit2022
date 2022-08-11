@@ -139,7 +139,7 @@ El siguiente paso es crear los servicios que implementan las interficies. Creamo
             await this._container.CreateItemAsync<Booking>(booking, new PartitionKey(booking.Id));
         }
        
-       //... Implementar el resto de métodos definidos en la interficie
+       //... Implementar el resto de métodos definidos en la interficie. La implementación completa está en la carpeta BizzSummitAPI del directorio raíz de este repo.
   ```
 Una vez tenemos los servicios, vamos a implementar los controladores (Controllers), usando la carpeta ya existente del mismo nombre. Creamos un fichero para cada controller. Por ejemplo, creamos el ReservasControlador.cs (BookingsController.cs):
 
@@ -190,7 +190,7 @@ Una vez tenemos los servicios, vamos a implementar los controladores (Controller
                 return StatusCode(500, "Some error occured while inserting data");
             }
         }
-        //... Implementar el resto de acciones para completar el CRUD
+        //... Implementar el resto de acciones para completar el CRUD. La implementación completa está en la carpeta BizzSummitAPI del directorio raíz de este repo.
   ```
 
 Configuramos los servicios que dependen del proyecto.
