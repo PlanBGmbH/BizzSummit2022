@@ -197,7 +197,7 @@ Configuramos los servicios que dependen del proyecto.
 
 ![image](https://user-images.githubusercontent.com/18615795/182646899-76ca6af4-fd2e-470e-8116-6b970a5f6c04.png)
 
-Para ello, editamos el método Configure Services de la clase Startup, añadiendo como servicios la inicialización única de la Cosmos DB y las colecciones:
+Para ello, editamos el método Configure Services de la clase Startup, añadiendo como servicios (AddSingleton) mediante inyección de dependencias la inicialización única de la Cosmos DB y las colecciones:
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -217,7 +217,7 @@ public void ConfigureServices(IServiceCollection services)
 }
  ```
  
- En cada uno de los métodos InitializeCosmosXXX, nos aseguramos que la Cosmos DB y el container existe, y si no lo creamos automáticamente:
+ En cada uno de los métodos InitializeCosmosXXX, nos aseguramos que la Cosmos DB y el container existe (sino lo creamos automáticamente) y creamos la instancia única del servicio:
  
  ```cs
         private static async Task<BookingsService> InitializeCosmosBookingsClientInstanceAsync(string CosmosDBEndpoint, string CosmosDBKey, string CosmosDBDatabaseName, string CosmosDBBookingsContainer)
