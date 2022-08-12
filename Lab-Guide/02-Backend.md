@@ -79,17 +79,11 @@ Empezamos creando los tres modelos de datos que serán persistidos en la base de
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "firstName")]
-        public string FirstName { get; set; }
+        [JsonProperty(PropertyName = "fullName")]
+        public string FullName { get; set; }
 
-        [JsonProperty(PropertyName = "lastName")]
-        public string LastName { get; set; }
-
-        [JsonProperty(PropertyName = "email")]
-        public string Email { get; set; }
-
-        [JsonProperty(PropertyName = "phone")]
-        public string Phone { get; set; }
+        [JsonProperty(PropertyName = "mail")]
+        public string Mail { get; set; }
     }
   ```
 
