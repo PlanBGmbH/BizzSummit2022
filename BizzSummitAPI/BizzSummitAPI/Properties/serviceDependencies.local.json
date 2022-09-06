@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "cosmosdb1": {
+      "secretStore": "LocalSecretsFile",
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.DocumentDB/databaseAccounts/bizzsummitcosmosdb",
       "type": "cosmosdb.azure",
-      "connectionId": "CosmosDBKeys",
-      "secretStore": "LocalSecretsFile"
+      "connectionId": "CosmosDBKeys"
     }
   }
 }

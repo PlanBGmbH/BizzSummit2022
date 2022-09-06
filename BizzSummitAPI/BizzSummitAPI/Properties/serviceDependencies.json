@@ -3,6 +3,10 @@
     "cosmosdb1": {
       "type": "cosmosdb",
       "connectionId": "CosmosDBKeys"
+    },
+    "apis1": {
+      "ignored": "true",
+      "type": "apis.azure"
     }
   }
 }
