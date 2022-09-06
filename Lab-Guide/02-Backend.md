@@ -25,7 +25,7 @@ Una vez creada la solución, instalamos los Nuget Packages necesarios:
 
 - Microsoft.Azure.CosmosDB: Librería que nos permite conectarnos y trabajar con Azure Cosmos DB usando la API de SQL.
 - Newtonsoft.Json: Nos permite serializar y deserializar objetos, utilizados para la comunicación con Cosmos DB.
-- Swashbuckle.AspNetCore (versión 5.6.3, que es compatible con proyectos ASP.NET Core 3.1: Nos permite utilizar Swagger para documentar nuestras APIs.
+- Swashbuckle.AspNetCore: Nos permite utilizar Swagger para documentar nuestras APIs.
 
 Empezamos creando los tres modelos de datos que serán persistidos en la base de datos. Creamos una carpeta en la solución de nombre Models (Modelos), donde creamos tres clases:
 
