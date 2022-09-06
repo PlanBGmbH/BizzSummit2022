@@ -4,7 +4,7 @@
     "title": "BizzSummitAPI",
     "version": "1.0"
   },
-  "host": "",
+  "host": "bizzsummitapim.azure-api.net",
   "basePath": "/",
   "schemes": [
     "https"
@@ -13,51 +13,6 @@
   "produces": [],
   "paths": {
     "/api/Bookings": {
-      "post": {
-        "operationId": "CreateBooking",
-        "summary": "Create a Booking",
-        "tags": [
-          "Bookings"
-        ],
-        "parameters": [
-          {
-            "name": "booking",
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/Booking"
-            }
-          }
-        ],
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "operationId": "DeleteBooking",
-        "summary": "Delete a Booking",
-        "tags": [
-          "Bookings"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
       "get": {
         "operationId": "GetBookings",
         "summary": "Get a list of all Bookings",
@@ -98,6 +53,51 @@
           }
         }
       },
+      "delete": {
+        "operationId": "DeleteBooking",
+        "summary": "Delete a Booking",
+        "tags": [
+          "Bookings"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "operationId": "CreateBooking",
+        "summary": "Create a Booking",
+        "tags": [
+          "Bookings"
+        ],
+        "parameters": [
+          {
+            "name": "booking",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Booking"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
       "put": {
         "operationId": "UpdateBooking",
         "summary": "Update a Booking",
@@ -126,51 +126,6 @@
       }
     },
     "/api/Projects": {
-      "post": {
-        "operationId": "CreateProject",
-        "summary": "Create a Project",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "name": "project",
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/Project"
-            }
-          }
-        ],
-        "consumes": [
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "delete": {
-        "operationId": "DeleteProject",
-        "summary": "Delete a Project",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
       "get": {
         "operationId": "GetProjects",
         "summary": "Get a list of all Projects",
@@ -213,6 +168,51 @@
           }
         }
       },
+      "delete": {
+        "operationId": "DeleteProject",
+        "summary": "Delete a Project",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "operationId": "CreateProject",
+        "summary": "Create a Project",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "project",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
       "put": {
         "operationId": "UpdateProject",
         "summary": "Update a Project",
@@ -241,29 +241,39 @@
       }
     },
     "/api/Resources": {
-      "post": {
-        "operationId": "CreateResource",
-        "summary": "Create a Resource",
+      "get": {
+        "operationId": "GetResources",
+        "summary": "Get a list of all Resources",
         "tags": [
           "Resources"
         ],
-        "parameters": [
-          {
-            "name": "resource",
-            "in": "body",
-            "schema": {
-              "$ref": "#/definitions/Resource"
-            }
-          }
-        ],
-        "consumes": [
+        "produces": [
+          "text/plain",
           "application/json",
-          "text/json",
-          "application/*+json"
+          "text/json"
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ResourceArray"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": "string",
+                  "fullName": "string",
+                  "mail": "string"
+                }
+              ],
+              "text/json": [
+                {
+                  "id": "string",
+                  "fullName": "string",
+                  "mail": "string"
+                }
+              ]
+            }
           }
         }
       },
@@ -286,49 +296,9 @@
           }
         }
       },
-      "get": {
-        "operationId": "GetResources",
-        "summary": "Get a list of all Resources",
-        "tags": [
-          "Resources"
-        ],
-        "produces": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": "#/definitions/ResourceArray"
-            },
-            "examples": {
-              "application/json": [
-                {
-                  "id": "string",
-                  "firstName": "string",
-                  "lastName": "string",
-                  "email": "string",
-                  "phone": "string"
-                }
-              ],
-              "text/json": [
-                {
-                  "id": "string",
-                  "firstName": "string",
-                  "lastName": "string",
-                  "email": "string",
-                  "phone": "string"
-                }
-              ]
-            }
-          }
-        }
-      },
-      "put": {
-        "operationId": "UpdateResource",
-        "summary": "Update a Resource",
+      "post": {
+        "operationId": "CreateResource",
+        "summary": "Create a Resource",
         "tags": [
           "Resources"
         ],
@@ -422,25 +392,17 @@
         "id": {
           "type": "string"
         },
-        "firstName": {
+        "fullName": {
           "type": "string"
         },
-        "lastName": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "phone": {
+        "mail": {
           "type": "string"
         }
       },
       "example": {
         "id": "string",
-        "firstName": "string",
-        "lastName": "string",
-        "email": "string",
-        "phone": "string"
+        "fullName": "string",
+        "mail": "string"
       }
     },
     "BookingArray": {
@@ -465,23 +427,15 @@
   "parameters": {},
   "responses": {},
   "securityDefinitions": {
-    "apiKeyHeader": {
+    "API Key": {
       "type": "apiKey",
-      "name": "Ocp-Apim-Subscription-Key",
-      "in": "header"
-    },
-    "apiKeyQuery": {
-      "type": "apiKey",
-      "name": "subscription-key",
-      "in": "query"
+      "in": "header",
+      "name": "Ocp-Apim-Subscription-Key"
     }
   },
   "security": [
     {
-      "apiKeyHeader": []
-    },
-    {
-      "apiKeyQuery": []
+      "API Key": []
     }
   ],
   "tags": []
