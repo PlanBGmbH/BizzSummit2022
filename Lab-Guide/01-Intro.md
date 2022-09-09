@@ -17,8 +17,8 @@ Queremos permitir que los "Citizen Developers" puedan crear un conector personal
 Los componentes que se van a usar en el Back-End son los siguientes: 
 
    1. [APIM](https://azure.microsoft.com/es-es/services/api-management/): Permite implementar puertas de enlace de API en paralelo con las API hospedadas en Azure, en otras nubes y en el entorno local para optimizar el flujo de tráfico de las API. Satisfaze los requisitos de seguridad y cumplimiento normativo, con una experiencia de administración unificada y una observación completa de todas las API internas y externas.
-   2. [App Service](https://azure.microsoft.com/es-es/services/app-service/): Enables to build, deploy, and scale web apps and APIs on your terms. In our case, we will build, host and deploy a .NET Core Web API.
-   3. [Cosmos DB](https://azure.microsoft.com/es-es/services/cosmos-db/): Fully managed, serverless NoSQL database for high-performance applications of any size or scale, with fast writes and reads anywhere in the world with multi-region writes and data replication.
+   2. [App Service](https://azure.microsoft.com/es-es/services/app-service/): Compile, implemente y escale aplicaciones web y API de forma automática según sus condiciones. En nuestro caso, crearemos, publicaremos y alojaremos una API web con .NET Core.
+   3. [Cosmos DB](https://azure.microsoft.com/es-es/services/cosmos-db/): Azure Cosmos DB es una base de datos NoSQL sin servidor totalmente administrada para aplicaciones de alto rendimiento de cualquier tamaño o escala.
 
 Los componentes que vamos a usar en el Front-End son los siguientes:
 
